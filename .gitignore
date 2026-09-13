@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Raw experimental data
+# Keep only the documentation files in these directories.
+data/*
+!data/README.md
+vocal_data/*
+!vocal_data/README.md
+
+# Generated analysis products
+outputs/cache/
+outputs/figures/
+
+# Temporary / serialized files
+*.pkl
+*.pickle
+*.npy
+*.npz
+*.joblib
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
