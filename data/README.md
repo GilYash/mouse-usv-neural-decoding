@@ -1,6 +1,6 @@
 # Neural/session data
 
-This directory is intentionally empty in the repository. Place the required MATLAB session files here before running the notebook.
+This directory is intentionally empty in the repository. The neural/session data used in this project were provided by **Dr. Shai Netser's laboratory at the University of Haifa** and are not redistributed here. Place the required MATLAB session files here only if you have authorized access to the original data.
 
 Expected files:
 
@@ -25,4 +25,4 @@ M8_Female_4.mat
 
 Each file is expected to provide the session metadata and data structures used by the notebook, including `sessionParams`, `vocalizationTimes`, `spikeCounts100ms`, DLC timestamps, and recorded-cell brain-area labels.
 
-Raw research data should only be shared or redistributed if permitted by the original data owner/lab.
+The original research data remain under the permissions of the originating lab/data owners and should not be shared or redistributed without authorization.
