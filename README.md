@@ -1,53 +1,79 @@
 # Predicting Mouse Ultrasonic Vocalization Type from Pre-Call Neural Population Activity
 
-Neural Data Science final project investigating whether neural population activity **before** a mouse ultrasonic vocalization (USV) contains information about the acoustic type of the upcoming call.
+An end-to-end **Neural Data Science** project combining acoustic signal processing, unsupervised learning, dimensionality reduction, supervised classification, cross-validation, and statistical inference to study whether neural population activity before a mouse ultrasonic vocalization (USV) contains information about the acoustic type of the upcoming call.
 
 **Authors:** Itay Oucherenko, Elad Joseph, Gil Yashayev  
-**GitHub:** `@ItayOucherenko`, `@EladJoseph`, `@GilYash`  
 **Course:** Neural Data Science (00970405)  
 **Institution:** Faculty of Data and Decision Sciences, Technion – Israel Institute of Technology
 
+## Quick links
+
+- [Analysis notebook](notebooks/Neural%20Data%20Science%20Final%20Project%20Code.ipynb)
+- [Final report](report/Neural%20Data%20Science%20Final%20Project%20Report.pdf)
+- [Neural/session data information](data/README.md)
+- [USV audio data information](vocal_data/README.md)
+
+## Project overview
+
+The project asks a two-stage question:
+
+1. **Can mouse vocalizations be organized into stable, data-driven acoustic categories?**
+2. **Can pre-call neural population activity predict which acoustic category will occur next?**
+
+Because the dataset does not contain manual ground-truth syllable labels, call types are first constructed from the audio. Raw USV recordings are aligned to neural timestamps, processed with session-specific background estimation and contour tracking, filtered by acoustic quality, and represented using interpretable acoustic features. K-Means and Gaussian Mixture Models are then evaluated to define acoustic categories.
+
+The resulting labels are used as targets for neural decoding. Population spike-count activity in the second preceding each call is evaluated using temporally blocked, bout-grouped cross-validation and circular-shift null testing designed to reduce temporal leakage and optimistic bias.
+
 ## Technical highlights
 
-This project demonstrates an end-to-end **machine learning, statistical inference, and scientific data analysis** workflow on multimodal neural and acoustic recordings.
+**Core stack:** Python, NumPy, pandas, SciPy, scikit-learn, Matplotlib, Joblib, UMAP
 
-**Core tools:** Python, NumPy, pandas, SciPy, scikit-learn, Matplotlib, Joblib, UMAP
+**Methods:**
 
-**Methods and capabilities:**
-
-- **Signal processing:** high-frequency audio spectrograms, session-specific background estimation, frequency-ridge tracking, acoustic feature extraction, and neural spike-count processing
-- **Unsupervised learning:** K-Means and Gaussian Mixture Models (GMMs), cluster validation, stability analysis, and feature ablation
-- **Dimensionality reduction & visualization:** PCA, t-SNE, and UMAP in 2-D/3-D
-- **Supervised machine learning:** logistic regression, random forest, and RBF-SVM classification
-- **Robust model evaluation:** nested cross-validation, temporally blocked folds, bout-aware grouping, and leakage diagnostics
-- **Statistical inference:** circular-shift permutation/null testing, Mann-Whitney tests, effect sizes, Fisher/Stouffer evidence combination, and Benjamini-Hochberg FDR correction
-- **Reproducible research:** fixed random seeds, cached expensive computations, explicit data validation, robustness analyses, and a complete scientific report
-
-## Overview
-
-The dataset does not contain ground-truth syllable labels, so the analysis is split into two stages:
-
-1. **Acoustic target construction** — raw USV recordings are aligned to neural timestamps, cleaned using session-specific background estimates, filtered by acoustic quality, represented with interpretable acoustic features, and clustered into data-driven call categories.
-2. **Neural decoding** — population spike-count activity before each call is used to predict the upcoming acoustic category with temporally blocked, bout-grouped cross-validation and circular-shift null testing.
-
-The final report and notebook contain the complete analysis, robustness checks, positive controls, and supplementary diagnostics.
+- **Signal processing:** high-frequency spectrograms, session-specific background estimation, frequency-ridge tracking, acoustic feature extraction, neural spike-count processing
+- **Unsupervised learning:** K-Means, Gaussian Mixture Models, cluster validation, stability analysis, feature ablation
+- **Dimensionality reduction:** PCA, t-SNE, UMAP in 2-D and 3-D
+- **Supervised learning:** logistic regression, random forest, RBF-SVM
+- **Model evaluation:** nested cross-validation, temporally blocked folds, bout-aware grouping, leakage diagnostics
+- **Statistical inference:** circular-shift null testing, Mann-Whitney tests, effect sizes, Fisher/Stouffer evidence combination, Benjamini-Hochberg FDR correction
+- **Reproducibility:** fixed random seeds, explicit data validation, cached expensive computations, robustness analyses, and a complete scientific report
 
 ## Main findings
 
-- The analysis uses **16 female-encounter sessions** containing **3,984 detected vocalizations**; **2,692 calls** remain after acoustic quality control.
-- K-Means identifies a stable **K = 3** acoustic partition using duration, FM intercept, and FM slope.
-- The selected K = 3 solution has **Silhouette = 0.394** and **mean subsampling ARI = 0.98**.
-- Only **1 of 21** session-by-K pre-call decoding tests survives BH-FDR correction: **M7_F2 at K = 3**, with Macro-F1 = **0.392**, p = **0.002**, q = **0.042**.
-- The dataset therefore supports **limited, session-dependent evidence**, not a dataset-wide conclusion that upcoming call type is reliably decodable from pre-call population activity.
-- A pooled **calling-vs-quiet** positive control is significant after correction (**q = 0.0047**), showing that the same neural-analysis pipeline can detect broader vocalization-related activity.
+- **16 female-encounter sessions** contained **3,984 detected vocalizations**; **2,692 calls** remained after acoustic quality control.
+- K-Means identified a stable **K = 3** acoustic partition using duration, FM intercept, and FM slope.
+- The selected partition achieved **Silhouette = 0.394** and **mean 80% subsampling ARI = 0.98**.
+- Only **1 of 21** session-by-K pre-call decoding tests survived BH-FDR correction: **M7_F2 at K = 3**, with Macro-F1 = **0.392**, p = **0.002**, q = **0.042**.
+- The overall result therefore supports **limited, session-dependent evidence**, rather than a dataset-wide conclusion that upcoming call type is reliably decodable from pre-call population activity.
+- A pooled **calling-vs-quiet** control was significant after correction (**q = 0.0047**), showing that the same neural-analysis pipeline can detect broader vocalization-related activity.
 
-## Authors and collaborators
+## Data provenance and availability
 
-- **Gil Yashayev** — `@GilYash` (repository owner)
-- **Elad Joseph** — `@EladJoseph`
-- **Itay Oucherenko** — `@ItayOucherenko`
+The neural/session recordings and raw USV audio used in this project were **provided by Dr. Shai Netser from the Lab for Neurobiology of Social Behavior, Sagol Department of Neurobiology, University of Haifa**.
 
-All three authors contributed to the Neural Data Science final project.
+The original `.mat` and `.wav` research files are **not included in this repository and are not redistributed by the project authors**. They remain subject to the permissions of the originating research group and data owners. This repository therefore contains the **analysis code, documentation, and final report only**.
+
+Full end-to-end reproduction requires authorized access to the original research data. See [`data/README.md`](data/README.md) and [`vocal_data/README.md`](vocal_data/README.md) for the expected local directory structure.
+
+Lab website: https://shlomowagner-lab.haifa.ac.il/
+
+## Analysis pipeline
+
+1. Setup and configuration
+2. Session loading and inventory
+3. Audio/neural clock alignment
+4. Bout segmentation
+5. Session-specific background estimation
+6. Acoustic feature extraction and quality control
+7. Acoustic feature-set selection
+8. K-Means/GMM comparison and K selection
+9. Acoustic cluster characterization
+10. Neural design-matrix construction
+11. Nested model selection and grouped temporal cross-validation
+12. Positive controls
+13. Circular-shift significance testing and robustness analyses
+14. Summary and limitations
+15. Additional ablations and supplementary checks
 
 ## Repository structure
 
@@ -68,27 +94,7 @@ mouse-usv-neural-decoding/
     └── README.md
 ```
 
-The experimental `.mat` and `.wav` files are **not included** in this repository because the research data were provided by **Dr. Shai Netser's laboratory at the University of Haifa** and are not ours to redistribute.
-
-## Analysis pipeline
-
-The notebook is organized as a complete end-to-end workflow:
-
-1. Setup and configuration
-2. Session loading and inventory
-3. Audio/neural clock alignment
-4. Bout segmentation
-5. Session-specific background estimation
-6. Acoustic feature extraction and quality control
-7. Acoustic feature-set selection
-8. K-Means/GMM comparison and K selection
-9. Acoustic cluster characterization
-10. Neural design-matrix construction
-11. Nested model selection and grouped temporal cross-validation
-12. Positive controls
-13. Circular-shift significance testing and robustness analyses
-14. Summary and limitations
-15. Additional ablations and supplementary checks
+The `data/` and `vocal_data/` directories contain documentation only; the underlying research recordings are intentionally excluded.
 
 ## Setup
 
@@ -113,25 +119,11 @@ and open:
 notebooks/Neural Data Science Final Project Code.ipynb
 ```
 
-## Required data layout
-
-Place the neural/session `.mat` files under:
-
-```text
-data/
-```
-
-and the raw audio recordings under:
-
-```text
-vocal_data/
-```
-
-The notebook contains an explicit session-to-file mapping and checks that every required pair is present before analysis begins. See [`data/README.md`](data/README.md) and [`vocal_data/README.md`](vocal_data/README.md) for the expected filenames.
-
 ## Reproducing the analysis
 
-Run the notebook from top to bottom. It automatically creates:
+If you have authorized access to the source data, place the neural/session `.mat` files under `data/` and the matching raw `.wav` recordings under `vocal_data/`. The notebook contains an explicit session-to-file mapping and validates the required inputs before analysis begins.
+
+Running the notebook from top to bottom creates:
 
 ```text
 outputs/
@@ -139,7 +131,7 @@ outputs/
 └── figures/
 ```
 
-Two expensive stages are cached: acoustic feature extraction and permutation/null analyses. In the configuration cell:
+Two computationally expensive stages are cached: acoustic feature extraction and permutation/null analyses. In the configuration cell:
 
 ```python
 RECOMPUTE_FEATURES = True
@@ -152,30 +144,22 @@ The main analysis uses a fixed random seed (`RANDOM_SEED = 0`) for reproducibili
 
 ## Statistical design
 
-Several choices in the notebook are specifically intended to reduce optimistic bias:
+Several choices are specifically intended to reduce optimistic bias:
 
-- Calls from the same bout are kept in the same cross-validation fold.
+- Calls from the same bout remain in the same cross-validation fold.
 - Folds are blocked in time rather than randomly shuffled.
-- Standardization, PCA, and hyperparameter selection are performed using training data only.
-- Logistic regression, random forest, and RBF-SVM are compared in nested cross-validation.
-- Significance is assessed using circular shifts of the temporally ordered labels rather than unrestricted label permutations.
+- Standardization, PCA, and hyperparameter selection are fitted using training data only.
+- Logistic regression, random forest, and RBF-SVM are compared with nested cross-validation.
+- Significance is assessed using circular shifts of temporally ordered labels rather than unrestricted label permutations.
 - Families of tests are corrected using Benjamini-Hochberg FDR.
 
-## Data provenance and availability
+## Authors and collaborators
 
-The neural/session data and raw ultrasonic-vocalization recordings used in this project were provided for analysis by **Dr. Shai Netser's laboratory at the University of Haifa**. Dr. Netser is affiliated with the University of Haifa's neurobiology research environment. The source `.mat` and `.wav` files are therefore **not redistributed in this repository**. This repository contains the analysis code, documentation, and final report only; access to the original recordings requires permission from the originating lab/data owners.
+- **Gil Yashayev** — [`@GilYash`](https://github.com/GilYash) (repository owner)
+- **Elad Joseph** — [`@EladJoseph`](https://github.com/EladJoseph)
+- **Itay Oucherenko** — [`@ItayOucherenko`](https://github.com/ItayOucherenko)
 
-## Notebook
-
-The complete analysis notebook is available at:
-
-[**Neural Data Science Final Project Code.ipynb**](notebooks/Neural%20Data%20Science%20Final%20Project%20Code.ipynb)
-
-## Report
-
-The complete scientific report, including methods, results, figures, references, robustness analyses, and supplementary material, is available at:
-
-[**Neural Data Science Final Project Report.pdf**](report/Neural%20Data%20Science%20Final%20Project%20Report.pdf)
+All three authors contributed to the Neural Data Science final project.
 
 ## Citation
 
@@ -183,4 +167,4 @@ If you use or reference this project, please cite the project authors listed in 
 
 ## License
 
-No open-source license is included by default because reuse permissions for the project code and underlying research materials have not been specified. Add an appropriate license before public redistribution if desired.
+No open-source license is included by default because reuse permissions for the project code and underlying research materials have not been specified.
