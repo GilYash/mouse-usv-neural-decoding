@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+title: "Predicting Mouse Ultrasonic Vocalization Type from Pre-Call Neural Population Activity"
+message: "If you use this project, please cite the authors below."
+type: software
+authors:
+  - family-names: "Oucherenko"
+    given-names: "Itay"
+    alias: "ItayOucherenko"
+  - family-names: "Joseph"
+    given-names: "Elad"
+    alias: "EladJoseph"
+  - family-names: "Yashayev"
+    given-names: "Gil"
+    alias: "GilYash"
+year: 2026
+institution: "Technion – Israel Institute of Technology"
