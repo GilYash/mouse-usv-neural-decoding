@@ -59,9 +59,9 @@ mouse-usv-neural-decoding/
 ├── AUTHORS.md
 ├── .gitignore
 ├── notebooks/
-│   └── usv_neural_decoding.ipynb
+│   └── Neural Data Science Final Project Code.ipynb
 ├── report/
-│   └── final_report.pdf
+│   └── Neural Data Science Final Project Report.pdf
 ├── data/
 │   └── README.md
 └── vocal_data/
@@ -110,7 +110,7 @@ jupyter lab
 and open:
 
 ```text
-notebooks/usv_neural_decoding.ipynb
+notebooks/Neural Data Science Final Project Code.ipynb
 ```
 
 ## Required data layout
@@ -165,11 +165,17 @@ Several choices in the notebook are specifically intended to reduce optimistic b
 
 The raw experimental recordings are not redistributed in this repository. The notebook expects session `.mat` files containing neural/session metadata and matching high-sampling-rate `.wav` recordings. Access to those files should follow the original dataset/lab permissions.
 
+## Notebook
+
+The complete analysis notebook is available at:
+
+[**Neural Data Science Final Project Code.ipynb**](notebooks/Neural%20Data%20Science%20Final%20Project%20Code.ipynb)
+
 ## Report
 
 The complete scientific report, including methods, results, figures, references, robustness analyses, and supplementary material, is available at:
 
-[`report/final_report.pdf`](report/final_report.pdf)
+[**Neural Data Science Final Project Report.pdf**](report/Neural%20Data%20Science%20Final%20Project%20Report.pdf)
 
 ## Citation
 
