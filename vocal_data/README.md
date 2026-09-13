@@ -1,6 +1,6 @@
 # Raw USV audio data
 
-This directory is intentionally empty in the repository. Place the matching raw `.wav` recordings here before running the notebook.
+This directory is intentionally empty in the repository. The raw ultrasonic-vocalization recordings used in this project were provided by **Dr. Shai Netser's laboratory at the University of Haifa** and are not redistributed here. Place the matching `.wav` recordings here only if you have authorized access to the original data.
 
 Expected files:
 
@@ -25,4 +25,4 @@ M8_Prb8_FreeFemale4_usv.wav
 
 The notebook verifies the sampling rate and aligns the audio clock to the neural/DLC clock using each session's `vocSyncTime` value.
 
-Raw research data should only be shared or redistributed if permitted by the original data owner/lab.
+The original research data remain under the permissions of the originating lab/data owners and should not be shared or redistributed without authorization.
