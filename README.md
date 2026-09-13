@@ -68,7 +68,7 @@ mouse-usv-neural-decoding/
     └── README.md
 ```
 
-The experimental `.mat` and `.wav` files are **not included** in this repository.
+The experimental `.mat` and `.wav` files are **not included** in this repository because the research data were provided by **Dr. Shai Netser's laboratory at the University of Haifa** and are not ours to redistribute.
 
 ## Analysis pipeline
 
@@ -161,9 +161,9 @@ Several choices in the notebook are specifically intended to reduce optimistic b
 - Significance is assessed using circular shifts of the temporally ordered labels rather than unrestricted label permutations.
 - Families of tests are corrected using Benjamini-Hochberg FDR.
 
-## Data availability
+## Data provenance and availability
 
-The raw experimental recordings are not redistributed in this repository. The notebook expects session `.mat` files containing neural/session metadata and matching high-sampling-rate `.wav` recordings. Access to those files should follow the original dataset/lab permissions.
+The neural/session data and raw ultrasonic-vocalization recordings used in this project were provided for analysis by **Dr. Shai Netser's laboratory at the University of Haifa**. Dr. Netser is affiliated with the University of Haifa's neurobiology research environment. The source `.mat` and `.wav` files are therefore **not redistributed in this repository**. This repository contains the analysis code, documentation, and final report only; access to the original recordings requires permission from the originating lab/data owners.
 
 ## Notebook
 
