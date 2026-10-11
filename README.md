@@ -2,7 +2,7 @@
 
 An end-to-end **Neural Data Science** project combining acoustic signal processing, unsupervised learning, dimensionality reduction, supervised classification, cross-validation, and statistical inference to study whether neural population activity before a mouse ultrasonic vocalization (USV) contains information about the acoustic type of the upcoming call.
 
-**Authors:** Itay Oucherenko, Elad Joseph, Gil Yashayev  
+**Authors:** Itay Oucherenko, Elad Joseph, Gil Yashayev.  
 **Course:** Neural Data Science (00970405)  
 **Institution:** Faculty of Data and Decision Sciences, Technion – Israel Institute of Technology
 
